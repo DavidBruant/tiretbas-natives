@@ -24,8 +24,14 @@ In the end, the ````_```` prefix looks safe to use.
 ### EventTarget.prototype
 
 ````_on````: ````addEventListener```` alias
+
 ````_off````: ````removeEventListener```` alias
+
 ````_once````: like ````addEventListener```` but removing itself right after the event happened.
+This is particularly useful for the ````DOMContentLoaded```` event for which a good practice is to remove the listener to
+avoid leaking memory.
+
+
 ````_emit````: ````dispatchEvent```` alias
 
 
