@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <script src="../tiretbas-natives.js"> </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            // Inspired from https://github.com/joyent/node/blob/c9d93f34311ce0a9b59ed9f4511a2e3ba69e0f25/test/simple/test-event-emitter-once.js
+            var times_recurse_emitted = 0;
+
+            var body = document.body;
+            
+            body._once('e', function(){
+                body._emit(new Event('e'));
+                times_recurse_emitted++;
+            });
+            
+            body._once('e', function() {
+                times_recurse_emitted++;
+            });
+            
+            body._emit(new Event('e'));
+            
+            setTimeout(function() {
+                console.log(times_recurse_emitted === 2);
+            }, 100);
+            
+        })
+        
+        
+    </script>
+
+    <title> TITLE </title>    
+  </head>
+
+  <body>
+
+  </body>
+</html>
