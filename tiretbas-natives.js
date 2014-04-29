@@ -39,19 +39,22 @@
         this.addEventListener(name, function newListener(){
             this.removeEventListener(name, newListener, useCapture);
             
-            try{
-                listener.apply(this, arguments);
-            }
-            catch(e){
-                throw e; // rethrowing for window.onerror
-            }
+            listener.apply(this, arguments);
         }, useCapture);
-    } });
+    };
     EventTarget.prototype._emit = EventTarget.prototype.dispatchEvent;
     
-
+    // Element
     Element.prototype._empty = function _empty(){
         this.innerHTML = '';
-    }
+    };
+    
+    // hidden attribute is a standard thing https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#hidden
+    Element.prototype._hide = function _hide(){
+        this.setAttribute('hidden', '')
+    };
+    Element.prototype._show = function _show(){
+        this.removeAttribute('hidden')
+    };
     
 })(this);
