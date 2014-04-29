@@ -50,11 +50,16 @@
     };
     
     // hidden attribute is a standard thing https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#hidden
+    
+        /*
+        CSS overrides what the hidden attribute says. In some cases (i.e. an element has display:flex), it will be needed to
+        add el[hidden]{display:none;}. This is a trade-off, hopefully reasonable.
+        */
     Element.prototype._hide = function _hide(){
-        this.style.display = 'none';
+        this.setAttribute('hidden', '');
     };
     Element.prototype._show = function _show(){
-        this.style.display = ''; // restore previous value
+        this.removeAttribute('hidden');
     };
     
 })(this);
