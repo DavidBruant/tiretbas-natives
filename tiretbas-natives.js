@@ -51,10 +51,10 @@
     
     // hidden attribute is a standard thing https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#hidden
     Element.prototype._hide = function _hide(){
-        this.setAttribute('hidden', '')
+        this.style.display = 'none';
     };
     Element.prototype._show = function _show(){
-        this.removeAttribute('hidden')
+        this.style.display = ''; // restore previous value
     };
     
 })(this);
