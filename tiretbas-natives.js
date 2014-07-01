@@ -19,18 +19,27 @@
             return this[0];
         }
     });
-    /*addBuiltin(Array.prototype, '_unique', {
-        value: function(){ throw 'TODO'; }
-    });*/
     
     Function.prototype._curry = function _curry(){
         return this.bind.apply(this, undefined, arguments);
     };
     
+    // cause ECMAScript Date months are bullshit! (old Java-based API)
+    Date._JANUARY = 0;
+    Date._FEBRUARY = 1;
+    Date._MARCH = 2;
+    Date._APRIL = 3;
+    Date._MAY = 4;
+    Date._JUNE = 5;
+    Date._JULY = 6;
+    Date._AUGUST = 7;
+    Date._SEPTEMBER = 8;
+    Date._OCTOBER = 9;
+    Date._NOVEMBER = 10;
+    Date._DECEMBER = 11;
     
     // DOM
     // EventTarget
-    
     EventTarget.prototype._on = EventTarget.prototype.addEventListener;
     // IE8 doesn't have addEventListener *sigh*
     
@@ -61,5 +70,20 @@
     Element.prototype._show = function _show(){
         this.removeAttribute('hidden');
     };
+    
+    // usually collections define in DOM specs don't inherit from Array.prototype. Enhancing them.
+    [
+        NodeList,
+        HTMLCollection,
+        FileList
+    ].forEach(function(collectionType){
+        Object.getOwnPropertyNames(Array.prototype).forEach(function(prop){
+            if(typeof Array.prototype[prop] === 'function')
+                collectionType.prototype['_'+prop] = Array.prototype[prop];
+        })
+    })
+    
+    
+    
     
 })(this);
