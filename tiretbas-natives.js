@@ -20,6 +20,13 @@
         }
     });
     
+    Array.prototype._remove = function(e){
+        var index = this.indexOf(e);
+        if(index !== -1){
+            this.splice(index, 1);
+        }
+    }
+    
     Function.prototype._curry = function _curry(){
         return this.bind.apply(this, undefined, arguments);
     };
@@ -82,8 +89,6 @@
                 collectionType.prototype['_'+prop] = Array.prototype[prop];
         })
     })
-    
-    
-    
+
     
 })(this);
