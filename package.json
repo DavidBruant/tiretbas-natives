@@ -1,0 +1,32 @@
+{
+  "name": "tiretbas-natives",
+  "version": "1.0.0",
+  "description": "## Let's extend the builtins safely!",
+  "main": "tiretbas-natives.js",
+  "type": "module",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidBruant/tiretbas-natives.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/DavidBruant/tiretbas-natives/issues"
+  },
+  "homepage": "https://github.com/DavidBruant/tiretbas-natives#readme",
+  "devDependencies": {
+    "ava": "^3.13.0"
+  },
+  "ava": {
+    "nodeArguments": [
+      "--experimental-modules"
+    ]
+  }
+}
